@@ -1,0 +1,6 @@
+(define (resize filename new-filename width height)
+  (let* ((image (car (gimp-file-load RUN-NONINTERACTIVE filename filename)))
+	 (drawable (car (gimp-image-get-active-layer image))))
+    (gimp-image-scale image width height)
+    (gimp-file-save RUN-NONINTERACTIVE image drawable new-filename new-filename)
+    (gimp-image-delete image)))
